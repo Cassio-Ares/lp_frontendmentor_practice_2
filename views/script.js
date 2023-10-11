@@ -31,13 +31,15 @@ function calculate() {
 
     const min = (dateNow - datePass) / 60000;
 
-    const yearTotal = Math.floor(min / 525960);
-    const monthTotal = Math.floor(min / 525960) % 43830; // ????
-    const dayTotal = (min/525960/43830)/1440             // ????
+    const yearTotal = Math.floor(min / (365*24*60));
+    const monthTotal =  Math.floor((min % (365*24*60))/(30*24*60));
+    const dayTotal = Math.floor((min % (min % (356*24*36))/(30*24*60)) % (24*60))  
 
     result_year.innerText = `${yearTotal}`;
     result_months.innerText = `${monthTotal}`;
+    result_day.innerText = `${dayTotal}`
   }
 }
 
 btn.addEventListener("click", calculate);
+
